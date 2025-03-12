@@ -1,0 +1,72 @@
+Time Step 0
+Ensemble/member0 did not converge
+Ensemble/member1 did not converge
+Time Step 1
+Ensemble/member0 did not converge
+Ensemble/member1 did not converge
+Time Step 2
+Time Step 3
+Time Step 4
+Time Step 5
+Ensemble/member0 did not converge
+Ensemble/member1 did not converge
+Time Step 6
+Time Step 7
+Time Step 8
+Time Step 9
+Ensemble/member0 did not converge
+Ensemble/member1 did not converge
+Time Step 10
+Time Step 11
+Time Step 12
+Time Step 13
+Ensemble/member0 did not converge
+Ensemble/member1 did not converge
+Time Step 14
+Time Step 15
+Time Step 16
+Time Step 17
+Ensemble/member0 did not converge
+Ensemble/member1 did not converge
+Time Step 18
+Time Step 19
+Time Step 20
+Time Step 21
+Ensemble/member0 did not converge
+Ensemble/member1 did not converge
+Time Step 22
+Time Step 23
+Time Step 24
+Time Step 25
+Ensemble/member0 did not converge
+Ensemble/member1 did not converge
+Time Step 26
+Time Step 27
+Time Step 28
+Time Step 29
+Ensemble/member0 did not converge
+Ensemble/member1 did not converge
+Time Step 30
+Time Step 31
+Time Step 32
+Time Step 33
+Ensemble/member0 did not converge
+Ensemble/member1 did not converge
+Time Step 34
+Time Step 35
+Time Step 36
+Time Step 37
+Ensemble/member0 did not converge
+Ensemble/member1 did not converge
+Time Step 38
+Time Step 39
+Time Step 40
+Time Step 41
+Ensemble/member0 did not converge
+Ensemble/member1 did not converge
+Time Step 42
+Time Step 43
+Time Step 44
+Time Step 45
+Ensemble/member0 did not converge
+Ensemble/member1 did not converge
