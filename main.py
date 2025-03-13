@@ -213,8 +213,6 @@ if __name__ == '__main__':
                 
     #%% 
 
-    
-    
     for t_step in range(pars['nsteps']):
         
         period, Assimilate = pars['period'](t_step, pars)  

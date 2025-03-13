@@ -8,9 +8,9 @@ reference recharge field for the virtual truth.
 import numpy as np
 import os
 import flopy
-from randomK import randomK
+from Functions.randomK import randomK
 from scipy.interpolate import griddata
-from model_params import get
+# from model_params import get
 
 def generate_fields(pars):
 

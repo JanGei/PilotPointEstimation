@@ -1,5 +1,5 @@
-from randomK import randomK
-from covarmat_s import covarmat_s
+from Functions.randomK import randomK
+from Functions.covarmat_s import covarmat_s
 import numpy as np
 from scipy.interpolate import griddata
 
@@ -34,7 +34,7 @@ def conditional_k(cxy, dx, lx, ang, sigma, pars, pp_k, pp_xy):
     # ikrigmat = np.linalg.inv(krigmat)
     
     # random, unconditional field for the given variogram
-    sunc = np.log(randomK(ang, sigma, pars, lx = lx))
+    sunc = randomK(ang, sigma, pars, lx = lx)
     
     # generating a conditional realisation
     sunc_at_meas = np.zeros(m)

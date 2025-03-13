@@ -10,11 +10,11 @@ from flopy.utils.gridgen import Gridgen
 from shapely.geometry import LineString, MultiPoint
 import numpy as np
 import shutil
-from Field_Generation import generate_fields
-from random_smooth_step import smooth_step
-from convert_transient import convert_to_transient
-from plot_fields import plot_fields
-from model_params import get
+from Functions.Field_Generation import generate_fields
+from Functions.random_smooth_step import smooth_step
+from Functions.convert_transient import convert_to_transient
+from Functions.plot_fields import plot_fields
+from Functions.model_params import get
 import sys
 import os
 from itertools import repeat

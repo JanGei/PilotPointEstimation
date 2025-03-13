@@ -6,7 +6,7 @@ from cmcrameri import cm
 def compare_mean_true(gwf, k_fields, poi):
     
     kmin = np.min(np.log10(k_fields[0]))
-    kmax = np.max(np.log10(k_fields[0]))
+    kmax = np.max(np.log10(k_fields[0][k_fields[0] < 0]))
     vmin = 0
     vmax = 2
     

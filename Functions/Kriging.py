@@ -1,4 +1,4 @@
-from covarmat_s import covarmat_s
+from Functions.covarmat_s import covarmat_s
 import numpy as np
 from scipy.interpolate import griddata
 
