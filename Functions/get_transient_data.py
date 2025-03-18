@@ -11,7 +11,7 @@ def get_transient_data(pars: dict, t_step: int):
     rivh  = np.genfromtxt(pars['rh_d'],delimiter = ',', names=True)['Wert']
 
     rch_data = abs(np.array(r_ref).flatten()) * sfac[t_step]
-    riv_delta = rivh[t_step]-rivh[0]
+    riv_delta = rivh[t_step]-rivh[t_step-1]
     
     # check if we need to set up new wel files
     day = 0.25 * t_step

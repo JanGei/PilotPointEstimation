@@ -264,7 +264,6 @@ class Ensemble:
             )
 
 
-    
     def model_error(self,  true_h, period):
         
         mean_h, var_h = self.get_mean_var(h = 'ic')
@@ -312,8 +311,8 @@ class Ensemble:
             mean_k, var_k = self.get_mean_var(h = 'npf', log = True)
             
             var_te2_k = self.k_ref_log**2
-            node_te1_k = np.mean((self.k_ref_log - mean_k)**2/var_k)
-            node_te2_k = np.mean((self.k_ref_log - mean_k)**2/var_te2_k)
+            node_te1_k = np.mean((self.k_ref_log[var_k != 0] - mean_k[var_k != 0])**2/var_k[var_k != 0])
+            node_te2_k = np.mean((self.k_ref_log[var_te2_k != 0] - mean_k[var_te2_k != 0])**2/var_te2_k[var_te2_k != 0])
             node_nrmse_k = np.mean((self.k_ref_log - mean_k)**2/0.01**2)
             
             self.te1_k['nsq'].append(node_te1_k)
@@ -507,77 +506,7 @@ class Ensemble:
                 for i in range(len(self.meank)):
                     f.write("{:.5f} ".format(self.meank[i]))
                 f.write('\n')
-                f.close()
-                
-    def record_shadow_state(self, pars: dict, true_h, period: str, t_step):
-        
-        mean_h, var_h = self.get_mean_var(h = 'ic')
-        k_fields = self.get_member_fields(['npf'])
-        k_fields = np.array([field['npf'] for field in k_fields]).squeeze()
-        self.meanlogk = np.mean(np.log(k_fields), axis = 0)
-        self.varlogk = np.var(np.log(k_fields), axis = 0)
-        self.meank = np.mean(k_fields, axis = 0)
-        
-        direc = pars['resdir']
-
-        f = open(os.path.join(direc,  'errors_'+period+'shadow.dat'),'a')
-        g = open(os.path.join(direc,  'errors_'+period+'shadow_ts.dat'),'a')
-        f.write("{:.3f} ".format(self.ole[period][-1]))
-        f.write("{:.3f} ".format(self.te1[period][-1]))
-        f.write("{:.7f} ".format(self.te2[period][-1]))
-        f.write("{:.5f} ".format(self.nrmse[period][-1]))
-        g.write("{:.3f} ".format(self.ole_nsq[period][-1]))
-        g.write("{:.3f} ".format(self.te1_nsq[period][-1]))
-        g.write("{:.7f} ".format(self.te2_nsq[period][-1]))
-        g.write("{:.5f} ".format(self.nrmse_nsq[period][-1]))
-        f.write('\n')
-        g.write('\n')
-        f.close()
-        g.close()
-        
-        f = open(os.path.join(direc,  'errors_k_shadow.dat'),'a')
-        g = open(os.path.join(direc,  'errors_k_ts_shadow.dat'),'a')
-        f.write("{:.3f} ".format(self.te1_k['normal'][-1]))
-        f.write("{:.7f} ".format(self.te2_k['normal'][-1]))
-        f.write("{:.5f} ".format(self.nrmse_k['normal'][-1]))
-        g.write("{:.3f} ".format(self.te1_k['nsq'][-1]))
-        g.write("{:.7f} ".format(self.te2_k['nsq'][-1]))
-        g.write("{:.5f} ".format(self.nrmse_k['nsq'][-1]))
-        f.write('\n')
-        g.write('\n')
-        f.close()
-        g.close()
-        
-        g = open(os.path.join(direc,  'obs_mean_shadow.dat'),'a')
-        for i in range(len(self.obs[0])):
-
-            g.write("{:.2f} ".format(self.obs[1][i]))
-        g.write('\n')
-        g.close()
-        
-        if t_step%20 == 0:
-            f = open(os.path.join(direc,  'h_mean_shadow.dat'),'a')
-            g = open(os.path.join(direc,  'h_var_shadow.dat'),'a')
-            for i in range(len(mean_h)):
-                f.write("{:.2f} ".format(mean_h[i]))
-                g.write("{:.2f} ".format(var_h[i]))
-            f.write('\n')
-            g.write('\n')
-            f.close()
-            g.close()
-            
-        if t_step == 0:
-            f = open(os.path.join(direc,  'meanlogk.dat'),'a')
-            g = open(os.path.join(direc,  'varlogk.dat'),'a')
-            for i in range(len(self.meanlogk)):
-                f.write("{:.2f} ".format(self.meanlogk[i]))
-                g.write("{:.2f} ".format(self.varlogk[i]))
-            f.write('\n')
-            g.write('\n')
-            f.close()
-            g.close()
-                
-            
+                f.close()    
 
         
     def remove_current_files(self, pars):
@@ -598,12 +527,5 @@ class Ensemble:
         self.te2        = {'assimilation': [], 'prediction': []}
         self.te2_nsq    = {'assimilation': [], 'prediction': []}
         
-        
-        
-        
-        
-        
-        
-        
-        
+
         

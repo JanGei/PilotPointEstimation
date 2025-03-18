@@ -1,12 +1,11 @@
 import matplotlib.pyplot as plt
-import numpy as np
 import flopy
 from cmcrameri import cm
 
 def compare_mean_true_head(gwf, h_fields, poi):
     
-    hmin = 14.5
-    hmax = 17
+    hmin = 12
+    hmax = 29
     
     varmin = 0
     varmax = 1e-3

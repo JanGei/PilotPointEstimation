@@ -140,10 +140,10 @@ def get():
     computer = ['office', 'binnac']
     setup = computer[0]
     if setup == 'office':
-        n_mem  = 2
+        n_mem  = 40
         nprocs = np.min([n_mem, psutil.cpu_count()])
         inspection = False
-        up_temp = False
+        up_temp = True
         printf = True
         spinup = False
         isotropic = False
@@ -265,10 +265,10 @@ def get():
         'top'   : np.array([50]),                           # Top of aquifer
         'welxy' : np.array(well_loc[q_idx]),                # location of pumps
         'obsxy' : np.array(well_loc),                       # location of obs
-        'welq'  : np.array([0.03, 0.01, 0.04, 0.02, 0.14]),   # Q of wells [m3s-1]
-        # 'welq'  : np.array([0.08, 0.03, 0.06, 0.04, 0.01]),   # Q of wells [m3s-1]
-        'welst' : np.array([20, asimdays[1], 200, 0, 0]),   # start day of pump
-        'welnd' : np.array([150, 365, 365, 200, 300]),      # end day of pump
+        'welq'  : np.array([0.03, 0.02, 0.04, 0.03, 0.09]), # Q of wells [m3s-1]
+        # 'welq'  : np.array([0.08, 0.03, 0.06, 0.04, 0.01]), # Q of wells [m3s-1]
+        'welst' : np.array([20, asimdays[1], 50, 0, 0]),    # start day of pump
+        'welnd' : np.array([150, 365, 365, 365, 300]),      # end day of pump
         'welay' : np.array(np.zeros(5)),                    # layer of wells
         'river' : river,            # start / end of river
         'rivgrd': 0.0015,                                    # river gradient [-]

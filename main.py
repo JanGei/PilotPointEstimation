@@ -20,21 +20,8 @@ from objects.EnsembleKalmanFilter import EnsembleKalmanFilter
 import time
 import numpy as np
 from joblib import Parallel, delayed
-# import sys
-# import warnings
 
-# # Define a filter function to suppress specific warnings
-# def joblib_warning_filter(message, category, filename, lineno, file=None, line=None):
-#     if "joblib" in str(filename):
-#         return None  # Suppress the warning
-#     else:
-#         return message, category, filename, lineno, None, None
-
-# KFELDER WERDEN IRGENDWIE ALS NAN ÜBERGEBEN - LIEGT WOHL AM ASSIMILATIONS-ALGORITHMUS!!!
 if __name__ == '__main__':
-
-    # Register the filter function with the warnings module
-    # warnings.showwarning = joblib_warning_filter
     
     pars        = get()
     n_mem       = pars['n_mem']
@@ -157,7 +144,7 @@ if __name__ == '__main__':
     # MF_Ensemble_iso.remove_current_files(pars)
     write_file(pars,[pp_cid, pp_xy], ["pp_cid","pp_xy"], 0, intf = True)
     # set their respective k-fields
-    MF_Ensemble.set_field(k_fields, ['npf'])
+    MF_Ensemble.set_field(np.exp(k_fields), ['npf'])
     # MF_Ensemble_iso.set_field(k_fields_iso, ['npf'])
     # MF_Ensemble.set_field([VR_Model.npf.k.array for i in range(len(models))], ['npf'])
     
@@ -173,6 +160,8 @@ if __name__ == '__main__':
     
     start_time = time.time()
     MF_Ensemble.update_initial_conditions()
+    for member in MF_Ensemble.members:
+        member.copy_transient(['sto'])
     # MF_Ensemble_iso.update_initial_conditions()
     
     if pars['printf']: print(f'Ensemble now with steady state initial conditions in {(time.time() - start_time):.2f} seconds')
@@ -228,7 +217,6 @@ if __name__ == '__main__':
         start_time_ts = time.time()
         if t_step%4 == 0:
             data, packages = get_transient_data(pars, t_step)
-            
             VR_Model.update_transient_data(data, packages)
             MF_Ensemble.update_transient_data(packages)
             # MF_Ensemble_iso.update_transient_data(packages)
@@ -277,7 +265,6 @@ if __name__ == '__main__':
         # Update the intial conditiopns of the "true model"
         true_h = VR_Model.update_ic()
         MF_Ensemble.log(t_step)
-        
         start_time = time.time()
         if period == "assimilation" or period == "prediction":
             if t_step%4 == 0:

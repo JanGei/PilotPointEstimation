@@ -69,7 +69,13 @@ class MFModel:
     def copy_transient(self, packages):
         for pkg in packages:
             file = os.path.join(self.pars['trs_ws'], self.pars['mname']+'.'+pkg)
-            shutil.copy(file, self.direc)
+            dest_file = os.path.join(self.direc, os.path.basename(file))
+            
+            # Ensure the destination file is removed before copying
+            if os.path.exists(dest_file):
+                os.remove(dest_file)
+            
+            shutil.copy2(file, self.direc)
 
             
     def update_ic(self):
