@@ -290,7 +290,6 @@ if __name__ == '__main__':
                     if t_step%40 == 0:
                         compare_mean_true(gwf, [np.squeeze(VR_Model.npf.k.array), MF_Ensemble.meanlogk, MF_Ensemble.varlogk], pp_xy[pars['f_m_id']])
                         compare_mean_true_head(gwf, [np.squeeze(true_h), np.squeeze(mean_h), np.squeeze(var_h)], pp_xy[pars['f_m_id']]) 
-                
                 if pars['printf']: print(f'Plotting and recording took {(time.time() - start_time):.2f} seconds')
                 if pars['printf']: print(f'Entire Step took {(time.time() - start_time_ts):.2f} seconds')
     
